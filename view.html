@@ -1,0 +1,301 @@
+{{define "home"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    
+    <title>Home Page Golang CRUD</title>
+</head>
+<body>
+    <div class="jumbotron col-lg-6 mx-auto">
+        <h1 class="display-4">Hello, world!</h1>
+        <p class="lead">Berikut ini adalah aplikasi web CRUD dasar integrasi antara Golang dengan Mongodb.</p>
+        <hr class="my-4">
+        <p>Pilihlah menu yang akan anda coba dibawah ini.</p>
+        <a href="/create" class="btn btn-success stretched-link">Create Data</a>
+        <a href="/read" class="btn btn-info stretched-link">Read Database</a>
+        <a href="/update" class="btn btn-warning stretched-link">Update Data</a>
+        <a href="/delete" class="btn btn-danger stretched-link">Delete Data</a>
+      </div>
+      <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+{{end}}
+
+
+{{define "form"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Input Golang Form</title>
+</head>
+<body>
+    <div class="col-lg-6 mx-auto">
+      <form method="post" action="/create" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Name</label>
+            <input type="text" name="name" class="form-control"  placeholder="Name .." required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Grade</label>
+            <input type="text" name="grade" class="form-control"  placeholder="Grade .." required>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Category</label>
+            <input type="text" name="category" class="form-control"  placeholder="Category .." required>
+          </div>
+          <button type="submit" class="btn btn-primary">Create</button>
+          <a href="/read" class="btn btn-info stretched-link">Read Database</a>
+          <a href="/update" class="btn btn-warning stretched-link">Update Data</a>
+          <a href="/delete" class="btn btn-danger stretched-link">Delete Data</a>
+          <br/>
+          <a href="/" class="stretched-link">Back to Home</a>
+        </form>
+    </div>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+{{end}}
+
+{{define "result"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Result Form</title>
+</head>
+<body>
+    <h1>Hello {{.name}}</h1>
+    <p>{{.grade}}</p>
+    <p>{{.category}}</p>
+</body>
+</html>
+{{end}}
+
+{{define "read"}}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Read Golang Form</title>
+</head>
+<body>
+    <div class="col-lg-6 mx-auto">
+      <form method="post" action="/read" >
+          <div class="form-group">
+            <label for="exampleInputEmail1">Data</label>
+            <input type="text" name="data_r" class="form-control"  placeholder="Data yang dicari.." required>
+          </div>
+          <button type="submit" class="btn btn-primary">Read</button>
+          <a href="/create" class="btn btn-success stretched-link">Create Database</a>
+          <a href="/update" class="btn btn-warning stretched-link">Update Data</a>
+          <a href="/delete" class="btn btn-danger stretched-link">Delete Data</a>
+          <br/>
+          <a href="/" class="stretched-link">Back to Home</a>
+        </form>
+    </div>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+{{end}}
+
+{{define "result_r"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+       <!-- Bootstrap CSS -->
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Database Yang Dicari</title>
+</head>
+<body>
+    <div class="col-lg-6 mx-auto">
+        <table class="table table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Grade</th>
+                <th scope="col">Category</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>{{.name}}</td>
+                <td>{{.grade}}</td>
+                <td>{{.category}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <a href="/" class="stretched-link">Back to Home</a>
+    </div>
+       <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+
+{{end}}
+
+{{define "update"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Update Golang Form</title>
+</head>
+<body>
+  <div class="col-lg-6 mx-auto">
+        <form method="post" action="/update" >
+            <div class="form-group">
+              <label for="exampleInputEmail1">Data</label>
+              <input type="text" name="data_u" class="form-control"  placeholder="Data yang diubah .." required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" name="name_u" class="form-control"  placeholder="Name .." required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Grade</label>
+              <input type="text" name="grade_u" class="form-control"  placeholder="Grade .." required>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Category</label>
+              <input type="text" name="category_u" class="form-control"  placeholder="Category .." required>
+            </div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <a href="/create" class="btn btn-success stretched-link">Create Data</a>
+            <a href="/read" class="btn btn-info stretched-link">Read Database</a>
+            <a href="/delete" class="btn btn-danger stretched-link">Delete Data</a>
+          <br/>
+          <a href="/" class="stretched-link">Back to Home</a>
+          </form>
+          </div>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+{{end}}
+
+{{define "result_u"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Result Form</title>
+</head>
+<body>
+    <h1>Hello {{.name}}</h1>
+    <p>{{.grade}}</p>
+    <p>{{.category}}</p>
+</body>
+</html>
+{{end}}
+
+{{define "delete"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Delete Golang Form</title>
+</head>
+<body>
+  <div class="col-lg-6 mx-auto">
+        <form method="post" action="/delete" >
+            <div class="form-group">
+              <label for="exampleInputEmail1">Data</label>
+              <input type="text" name="data_d" class="form-control"  placeholder="Data akan dihapus .." required>
+            </div>
+            <button type="submit" class="btn btn-primary">Delete</button>
+            <a href="/create" class="btn btn-success stretched-link">Create Data</a>
+            <a href="/read" class="btn btn-info stretched-link">Read Database</a>
+          <a href="/update" class="btn btn-warning stretched-link">Update Data</a>
+          <br/>
+          <a href="/" class="stretched-link">Back to Home</a>
+          </form>
+          </div>
+        <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
+{{end}}
+
+{{define "result_d"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Result Form</title>
+</head>
+<body>
+    <div class="col-lg-6 mx-auto">
+        <p>Data {{.data}} berhasil dihapuskan </p>
+        <br/>
+        <a href="/" class="stretched-link">Back to Home</a>
+    </div>
+</body>
+</html>
+{{end}}
